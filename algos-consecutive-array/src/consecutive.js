@@ -1,3 +1,4 @@
+/* exported makeArrayConsecutive */
 /**
  * make array consecutive
  * for array, const arr =  [1, 2, 5], find how many integers are needed
@@ -13,13 +14,12 @@
  */
 
 const makeArrayConsecutive = array => {
-  const orderedArray = array.sort();
+  // const orderedArray = array.sort();
   var count = 0;
-  for (let i = 0; i < orderedArray.length; i++) {
-    if (orderedArray[i + 1] !== orderedArray[i] + 1) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i + 1] !== array[i] + 1) {
       count++;
     }
   }
   return count;
 };
-makeArrayConsecutive();
