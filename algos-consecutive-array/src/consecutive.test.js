@@ -56,4 +56,14 @@ describe('makeConsecutive(array)', function () {
 
   });
 
+  context('[3, 2]', function () {
+
+    it('returns 0', function () {
+      var input = deepFreeze([3, 2]);
+      var output = makeArrayConsecutive(input);
+      expect(output).to.deep.equal(0);
+    });
+
+  });
+
 });
