@@ -18,8 +18,7 @@
     "attr-spacing": true,
     "attr-value-quotes": true,
     "case-sensitive-attr-name": true,
-    "case-sensitive-tag-name": true,
-    "indentation": 2
+    "case-sensitive-tag-name": true
   },
   "childNodeRules": [
     {
