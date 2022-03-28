@@ -1,56 +1,61 @@
-// const str = '5.0,100,5.5,101,6.0,102:L10;5.0,99,5.5,100,6.0,101:L20;5.0,99,5.5,100,6.0,101:L20;5.0,99,5.5,100,6.0,101:L20;';
+const strRates = '5.0,100,5.5,101,6.0,102:L10;5.0,99,5.5,100,6.0,101:L20;5.0,98,5.5,99,6.0,100:L30;5.0,97,5.5,98,6.0,99:L40;';
 
-// var strArr = str.split(';').map(list => list.split(':'));
+var strArr = strRates.split(';');
 
-// // splitting string by semi-colon into array and splitting up each index in array by semicolon seprating the "L10"
+var header = [];
+var rowHeader = [];
+var rowValues = [];
 
-// var lockDays = [];
-// var ratesArray = [];
-// var pricesArray = [];
-// var orderedPricesArray = [];
+var rows = [];
 
-// // create storage
+for (let i = 0; i < strArr.length; i++) {
+  var data = strArr[i].split(':L');
+  if (data.length > 1) {
+    header.push(data[1]);
+  }
+  rows.push(data[0]);
+}
 
-// strArr.map(eachArray => {
-//   // iterate over each array in strArray
-//   lockDays.push(eachArray.pop().replace('L', ''));
-//   // remove lock days and L from each array and push into storage
-//   return eachArray;
-// });
+rows.pop();
 
-// strArr.pop();
-// lockDays.pop();
-// // remove empty string from end of lock day array
+if (rows.length > 0) {
+  var firstRow = rows[0].split(',');
+  for (let i = 0; i < firstRow.length; i += 2) {
+    rowHeader.push(firstRow[i]);
+  }
+  for (let k = 0; k < rows.length; k++) {
+    var col = [];
+    rows[k] = rows[k].split(',');
+    for (let j = 1; j < rows[k].length; j += 2) {
+      col.push(rows[k][j]);
+    }
+    rowValues.push(col);
+  }
+}
 
-// ratesArray = strArr.map(eachArray => eachArray.map(rates => rates.split(',').filter((rate, i) => !(i % 2)))[0]);
-// // iterate over strarray and each array inside to grab all rates - by checking if index is not divisible by 2
-// pricesArray = strArr.map(list => list.map(prices => prices.split(',').filter((price, i) => (i % 2)))[0]);
-// // iterate over strarray and each array inside to grab all prices - by checking if index is  divisible by 2
+var matrix = [];
+var padding = [''];
 
-// orderedPricesArray = pricesArray[0].map((price, i) => pricesArray.map(singlPrice => singlPrice[i]));
-// console.log(orderedPricesArray);
-// orderedPricesArray.forEach((price, i) => price.unshift(ratesArray[0][i]));
+if (padding.length > 0) {
+  header = padding.concat(header);
+  matrix.push(header);
+}
 
-// lockDays.unshift('');
+for (let i = 0; i < rowHeader.length; i++) {
+  matrix.push([rowHeader[i]]);
+}
 
-// var table = document.createElement('table');
+for (let i = 0; i < rowValues.length; i++) {
+  for (let j = 0; j < rowValues[i].length; j++) {
 
-// var tr = document.createElement('tr');
-// table.appendChild(tr);
-// lockDays.forEach(header => {
-//   var td = document.createElement('td');
-//   td.textContent = header;
-//   tr.appendChild(td);
-// });
+    matrix[j + 1].push(rowValues[i][j]);
+  }
+}
+// eslint-disable-next-line no-console
 
-// orderedPricesArray.forEach(data => {
-//   var tr2 = document.createElement('tr');
-//   table.appendChild(tr2);
-//   data.forEach(singleDataEl => {
-//     var td2 = document.createElement('td');
-//     td2.textContent = singleDataEl;
-//     tr2.appendChild(td2);
-//   });
-// });
-
-// document.getElementById('root').appendChild(table);
+// Loop through the rowValues
+// Get the value at rowValues[i](value is another array here)
+// Then loop through value and append to matrix
+// j = 0
+// For j < len(value)
+// matrix[i + 1].append(rowValues[i][j])
