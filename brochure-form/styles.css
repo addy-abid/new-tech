@@ -1,0 +1,41 @@
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.text-center {
+  text-align: center;
+}
+
+.header-font {
+  font-family: 'Brandon Grotesque';
+  color: rgb(236, 92, 87);
+  font-weight: 500;
+}
+.width-100 {
+  width: 100%;
+}
+
+.label-font {
+  font-family: 'Brandon Grotesque';
+  font-weight: 500;
+  font-size: 0.7em;
+}
+
+.input-font {
+  color: rgb(170, 170, 170);
+  font-family: 'AtlasGrotesk';
+}
+
+.pd {
+  padding: 7px 7px;
+}
+
+.border-radius {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+
+label,
+button {
+  display: block;
+}
